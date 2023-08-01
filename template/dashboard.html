@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<!-- Start Head -->
+{#{% include 'LetsShop/layout/head.html' %}#}
+<head>
+<meta charset="utf-8">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+<meta name="description" content="Fabulous is a creative, clean, fully responsive, powerful and multipurpose HTML Template with latest website trends. Perfect to all type of fashion stores.">
+<meta name="keywords" content="HTML,CSS,womens clothes,fashion,mens fashion,fashion show,fashion week">
+<meta name="author" content="JTV">
+<title>{% block title %}LetsShop Dashboard{% endblock %}</title>
+
+<!-- Favicons Icon -->
+<link rel="icon" href="{% static 'fabulous/images/favicon.ico' %}" type="image/x-icon" />
+
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS Style -->
+<link rel="stylesheet" type="text/css" href="{% static 'fabulous/css/styles.css' %} " media="all">
+</head>
+<!-- End Head -->
+
+<body class="cms-index-index cms-home-page">
+
+<!-- Start Newsletter Popup -->
+{% include 'LetsShop/layout/newsletter_popup.html' %}
+<!-- End Newsletter Popup -->
+
+<!-- Start Mobile Menu -->
+{% include 'LetsShop/layout/mobile_menu.html' %}
+<!-- End Mobile Menu -->
+
+<div id="page">
+
+  <!-- Start Header -->
+  {% include 'LetsShop/layout/header.html' %}
+  <!-- end Header -->
+{% block body %}
+  <!-- Start Revslider -->
+    {% include 'LetsShop/layout/main_slider.html' %}
+  <!-- End Revslider -->
+
+  <!-- Start Support Policy Box -->
+  {% include 'LetsShop/layout/support_policy_box.html' %}
+  <!-- End Support Policy Box -->
+
+  <!-- Start Main Container -->
+  {% include 'LetsShop/layout/main_container.html' %}
+  <!-- End Main Container -->
+
+  <!-- Start Collection Banner -->
+  {% include 'LetsShop/layout/collection_banner.html' %}
+  <!-- End Collection Banner -->
+
+  <!-- Start collection area end -->
+  {% include 'LetsShop/layout/collection_area_end.html' %}
+  <!-- End collection area end -->
+
+  <!-- Start Brand Logo -->
+  {% include 'LetsShop/layout/brand_logo.html' %}
+  <!-- End Brand Logo -->
+{% endblock %}
+  <!-- Start Footer -->
+  {% include 'LetsShop/layout/footer.html' %}
+  <!-- End Footer -->
+</div>
+
+<!-- Start JavaScript -->
+{% include 'LetsShop/layout/scripts.html' %}
+<!-- End JavaScript -->
+</body>
+</html>

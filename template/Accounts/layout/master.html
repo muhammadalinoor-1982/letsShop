@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="no-js" lang="en">
+{% load static %}
+
+<!-- Start Head -->
+{% comment %}{% include 'Accounts/layout/head.html' %}{% endcomment %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{% block title %}Master Page{% endblock %}</title>
+
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'adomx/assets/images/favicon.ico' %}">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/vendor/bootstrap.min.css' %}">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/vendor/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/vendor/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/vendor/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/vendor/cryptocurrency-icons.css' %}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/plugins/plugins.css' %}">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/helper.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'adomx/assets/css/style.css' %}">
+
+</head>
+<!-- End Head -->
+
+<body class="skin-dark">
+
+    <div class="main-wrapper">
+
+
+        <!-- Header Section Start -->
+        {% include 'Accounts/layout/header.html' %}
+        <!-- Header Section End -->
+
+        <!-- Side Header Start -->
+        {% include 'Accounts/layout/side_header.html' %}
+        <!-- Side Header End -->
+
+        <!-- Content Body Start -->
+        <div class="content-body">
+            {% block body %}
+            {% include 'Accounts/layout/body.html' %}
+            {% endblock %}
+        </div>
+        <!-- Content Body End -->
+
+        <!-- Footer Section Start -->
+        {% include 'Accounts/layout/footer.html' %}
+        <!-- Footer Section End -->
+
+    </div>
+
+    <!-- Start JS -->
+    {% include 'Accounts/layout/script.html' %}
+    <!-- End JS -->
+</body>
+
+</html>

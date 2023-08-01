@@ -1,0 +1,51 @@
+{% extends 'dashboard.html' %}
+{% block title %}Login Page{% endblock %}
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <section class="main-container col1-layout">
+        <div class="main container">
+            <div style="position: relative; left: 270px; top: 35px; border-radius: 10px" class="account-login col-md-6">
+                <div class="page-title">
+                    <a href="{% url 'register' %}">
+                        <button style="position: relative; left: 470px" id="send2" name="send" type="submit" class="button login"><span>Signup</span></button>
+                    </a>
+                    <h2 style="position: relative; right: -160px">Login</h2>
+                </div>
+                <br>
+                    <div class="col-2 registered-users">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="content">
+                                <ul class="form-list">
+                                    <li>
+                                        <label for="username">User Name <span class="required">*</span></label>
+                                        <input type="text" title="username" class="input-text required-entry" id="username" name="username" value="" required autocomplete="username" autofocus>
+                                    </li>
+                                    {% comment %}<li>
+                                        <label for="email">Email Address <span class="required">*</span></label>
+                                        <input type="email" title="Email Address" class="input-text required-entry" id="email" name="email" value="" required autocomplete="email" autofocus>
+                                    </li>{% endcomment %}
+                                    <li>
+                                        <label for="pass">Password <span class="required">*</span></label>
+                                        <input type="password" title="Password" id="password" class="input-text required-entry validate-password" name="password" {% comment %}required{% endcomment %} autocomplete="current-password">
+                                    </li>
+                                </ul>
+                                <div class="buttons-set">
+                                    <button style="position: relative; right: -230px; bottom: -20px" id="send2" name="submit" type="submit" class="button login"><span>Login</span></button>
+                                </div><br>
+                                <div class="buttons-set">
+                                    <a style="position: relative; left: 400px" class="forgot-word" href="{% url 'reset_pass' %}">Forgot Your Password?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
