@@ -14,7 +14,11 @@ urlpatterns = [
     path('user_login/', user_login, name='user_login'),
     path('user_logout/', user_logout, name='user_logout'),
     path('register/', register, name='register'),
+
+    #URL for Reset Password
     path('reset_pass/', reset_pass, name='reset_pass'),
+    path('reset_user_pass/<auth_token>/', reset_user_pass, name='reset_user_pass'),
+    path('success_reset/', success_reset, name='success_reset'),
 
     #URL for E-Mail Verification
     path('success/', success, name='success'),
