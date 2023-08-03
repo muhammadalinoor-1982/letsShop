@@ -20,7 +20,7 @@
                     <h2 style="position: relative; right: -170px">New Password</h2>
                 </div>
                 <br>
-                <form method="POST" action="#">
+                <form method="POST">
                     {% csrf_token %}
                     <div class="col-2 registered-users">
                         <div class="content">
@@ -31,11 +31,11 @@
                                 </li>{% endcomment %}
                                 <li>
                                     <label for="pass">Password <span class="required">*</span></label>
-                                    <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="pass" required autocomplete="current-password">
+                                    <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="pass" {% comment %}required{% endcomment %} autocomplete="current-password">
                                 </li>
                                 <li>
                                     <label for="pass">Confirm Password <span class="required">*</span></label>
-                                    <input type="password" title="Password" id="pass1" class="input-text required-entry validate-password" name="pass1" required autocomplete="current-password">
+                                    <input type="password" title="Password" id="pass1" class="input-text required-entry validate-password" name="pass1" {% comment %}required{% endcomment %} autocomplete="current-password">
                                 </li>
                             </ul>
                             <div class="buttons-set">

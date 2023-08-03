@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 from .models import *
 
-# Start Login
 def user_login(request):
     if request.method == 'POST':
         UserName = request.POST.get('username')
@@ -22,12 +21,10 @@ def user_login(request):
                 login(request, user)
                 return redirect('pro')
             else:
-                prof.is_verified == False
-                messages.error(request, 'Please verify your Email')
                 return redirect('error')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Invalid User Name or Password....!! Please Tray again')
-            return redirect('user_login')
     return render(request, 'Accounts/pages/Auth/login.html')
 # End Login
 
@@ -131,12 +128,11 @@ def verify(request, auth_token):
     return redirect('user_login')
 # End Email Verification Process
 
-# Start Reset Password Process
 def reset_pass(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         if email:
-            user_prof = User.objects.filter(email=email)
+            user_prof = User.objects.get(email=email)
             if user_prof:
                 res_prof = Profile.objects.get(user=user_prof)
                 auth_token = res_prof.auth_token
@@ -146,7 +142,6 @@ def reset_pass(request):
                 messages.error(request, 'Email Address Not Found')
                 return redirect('reset_pass')
     return render(request, 'Accounts/pages/Auth/reset_pass.html')
-# End Reset Password Process
 
 def success_reset(request):
     return render(request, 'Accounts/pages/emailVerification/success_reset.html')
@@ -154,29 +149,33 @@ def success_reset(request):
 # Start Email Sending Process for Reset Password
 def send_mail_reset(Email, auth_token):
     subject = 'Your Password Reset Link'
-    message = f'Hi..!! Please Click The Link to Reset Your Password  http://127.0.0.1:8000/Accounts/reset_user_pass/{auth_token}'
+    message = f'Hi..!! Please Click The Link to Reset Your Password  http://127.0.0.1:8000/Accounts/Reset_user_pass/{auth_token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [Email]
     send_mail(subject, message, email_from, recipient_list)
 # End Email Sending Process for Reset Password
 
-# Start Reset Password Verification Process
-def reset_user_pass(request, auth_token):
-    prof_obj = Profile.objects.filter(auth_token=auth_token).first()
-    if prof_obj:
+def Reset_user_pass(request, auth_token):
+    profile_obj = Profile.objects.filter(auth_token=auth_token).first()
+    if profile_obj:
         if request.method == 'POST':
-            Pass = request.POST.get('pass')
-            Pass1 = request.POST.get('pass1')
-            if Pass == Pass1:
-                user = prof_obj.user
-                user.set_password(Pass)
-                user.save()
-                messages.success(request, 'Your Password Has Been Reset Successfully')
-                return redirect('user_login')
+            pass0 = request.POST.get('pass')
+            pass1 = request.POST.get('pass1')
+            if pass0:
+                if pass0 == pass1:
+                    user = profile_obj.user
+                    user.set_password(pass0)
+                    user.save()
+                    messages.success(request, 'Your Password Has Been Reset Successfully')
+                    return redirect('user_login')
+                else:
+                    messages.error(request, 'Retype Password Has Not Been Matched')
             else:
-                messages.error(request, 'Retype Password Has Not Been Matched')
+                messages.error(request, 'Password Should Not Be Blank')
+
     return render(request, 'Accounts/pages/Auth/new_pass.html')
-# End Reset Password Verification Process
+
+
 
 
 

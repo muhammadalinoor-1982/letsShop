@@ -17,8 +17,8 @@ urlpatterns = [
 
     #URL for Reset Password
     path('reset_pass/', reset_pass, name='reset_pass'),
-    path('reset_user_pass/<auth_token>/', reset_user_pass, name='reset_user_pass'),
     path('success_reset/', success_reset, name='success_reset'),
+    path('Reset_user_pass/<auth_token>/', Reset_user_pass, name='Reset_user_pass'),
 
     #URL for E-Mail Verification
     path('success/', success, name='success'),
