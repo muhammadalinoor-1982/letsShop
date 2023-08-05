@@ -1,0 +1,48 @@
+{% extends 'dashboard.html' %}
+{% block title %}User Details{% endblock %}
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <section class="main-container col1-layout">
+        <div class="main container">
+            <div style="position: relative; left: 270px; top: 35px; border-radius: 10px" class="account-login col-md-6">
+                <div class="page-title">
+                    <a href="{% url 'dashboard' %}">
+                        <button style="position: relative; left: 470px" id="send2" name="send" type="submit" class="button login"><span>Dashboard</span></button>
+                    </a>
+                    <h2 style="position: relative; right: -160px">User Details</h2>
+                </div>
+                <br>
+                    <div class="col-2 registered-users">
+                            <div class="content">
+                                {% for i in add %}
+                                <ul class="form-list">
+                                    <li>
+                                        <label for="username">Name: <span class="required">{{ i.user.username }}</span></label>
+                                    </li>
+                                    <li>
+                                        <label for="username">Company: <span class="required">{{ i.company }}</span></label>
+                                    </li>
+                                    <li>
+                                        <label for="username">Country: <span class="required">{{ i.country }}</span></label>
+                                    </li>
+                                    <li>
+                                        <label for="username">City: <span class="required">{{ i.city }}</span></label>
+                                    </li>
+                                    <li>
+                                        <label for="username">Phone: <span class="required">{{ i.phone }}</span></label>
+                                    </li>
+                                </ul>
+                                    <br><br>
+                                {% endfor %}
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

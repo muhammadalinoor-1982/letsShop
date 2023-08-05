@@ -15,6 +15,9 @@ urlpatterns = [
     path('user_logout/', user_logout, name='user_logout'),
     path('register/', register, name='register'),
 
+    #User Details
+    path('userDetails/', userDetails, name='userDetails'),
+
     #URL for Reset Password
     path('reset_pass/', reset_pass, name='reset_pass'),
     path('success_reset/', success_reset, name='success_reset'),

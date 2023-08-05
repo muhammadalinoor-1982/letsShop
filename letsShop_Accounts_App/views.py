@@ -175,7 +175,10 @@ def Reset_user_pass(request, auth_token):
 
     return render(request, 'Accounts/pages/Auth/new_pass.html')
 
-
+def userDetails(request):
+    user = request.user
+    add = Address.objects.filter(user=user)
+    return render(request, 'Accounts/pages/my_profile/user_details.html', locals())
 
 
 

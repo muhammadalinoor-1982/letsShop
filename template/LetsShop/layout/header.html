@@ -285,9 +285,9 @@
               </div>
               <div class="top_section hidden-xs">
                 <div class="toplinks">
-                  <div class="site-dir hidden-xs"> <a class="hidden-sm" href="#"><i class="fa fa-phone"></i> <strong>Hotline:</strong> +1 123 456 7890</a> <a href="mailto:support@example.com"><i class="fa fa-envelope"></i> support@example.com</a> </div>
+                  <div class="site-dir hidden-xs"> <a href="mailto:support@example.com"><i class="fa fa-user"></i><strong> Name:</strong> {{ user.username }}</a> <a class="hidden-sm" href="#"><i class="fa fa-envelope"></i> <strong>Email:</strong> {{ user.email }}</a> </div>
                   <ul class="links">
-                    <li><a title="My Account" href="my-account.html">My Account</a></li>
+                    <li><a title="My Account" href="{% url 'userDetails' %}">My Account</a></li>
                     <li><a title="My Wishlist" href="wishlist.html">Wishlist</a></li>
                     <li><a title="Checkout" href="checkout.html">Checkout</a></li>
                     <li><a title="Track Order" href="track-order.html">Track Order</a></li>
