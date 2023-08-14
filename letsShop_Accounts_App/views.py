@@ -70,11 +70,11 @@ def register(request):
                 # End Check Password Matching
 
                     user = User.objects.create_user(
-                        first_name=First_name,
-                        last_name=Last_name,
-                        username=UserName,
-                        email=Email,
-                        password=Pass)
+                        first_name  =First_name,
+                        last_name   =Last_name,
+                        username    =UserName,
+                        email       =Email,
+                        password    =Pass)
 
                 # Start Password Hashing
                     user.set_password(Pass)
