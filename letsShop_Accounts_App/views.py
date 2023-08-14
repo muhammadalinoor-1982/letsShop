@@ -129,18 +129,18 @@ def verify(request, auth_token):
 # End Email Verification Process
 
 def reset_pass(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        if email:
-            user_prof = User.objects.get(email=email)
-            if user_prof:
-                res_prof = Profile.objects.get(user=user_prof)
-                auth_token = res_prof.auth_token
-                send_mail_reset(email, auth_token)
-                return redirect('success_reset')
-            else:
-                messages.error(request, 'Email Address Not Found')
-                return redirect('reset_pass')
+    try:
+        if request.method == 'POST':
+            email = request.POST.get('email')
+            if email:
+                user_prof = User.objects.get(email=email)
+                if user_prof:
+                    res_prof = Profile.objects.get(user=user_prof)
+                    auth_token = res_prof.auth_token
+                    send_mail_reset(email, auth_token)
+                    return redirect('success_reset')
+    except Exception as e:
+        messages.error(request, 'Email Address Not Found')
     return render(request, 'Accounts/pages/Auth/reset_pass.html')
 
 def success_reset(request):
