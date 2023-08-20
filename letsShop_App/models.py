@@ -22,6 +22,13 @@ class SubCategory(models.Model):
     category= models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
+        return str(f'{self.title} >> {self.category}')
+
+class Super_SubCategory(models.Model):
+    title       = models.CharField(max_length=50)
+    SubCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
         return str(self.title)
 
 class Size(models.Model):

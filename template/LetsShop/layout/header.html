@@ -13,19 +13,19 @@
                   </div>
                   <div class="mega-menu-category">
                     <ul class="nav">
-                      <li><a href="#">Home</a>
+                      {% comment %}<li><a href="#">Home</a>
                         <div class="wrap-popup column1">
                           <div class="popup">
                             <ul class="nav">
                               <li><a href="index.html">Home Shop 1</a></li>
-        <li><a href="version2/index.html">Home Shop 2</a></li>
-        <li><a href="version3/index.html">Home Shop 3</a></li>
-        <li><a href="version4/index.html">Home Shop 4</a></li>
+                              <li><a href="version2/index.html">Home Shop 2</a></li>
+                              <li><a href="version3/index.html">Home Shop 3</a></li>
+                              <li><a href="version4/index.html">Home Shop 4</a></li>
                             </ul>
                           </div>
                         </div>
-                      </li>
-                      <li><a href="#">Page</a>
+                      </li>{% endcomment %}
+                      {% comment %}<li><a href="#">Page</a>
                         <div class="wrap-popup">
                           <div class="popup">
                             <div class="row">
@@ -65,29 +65,32 @@
                             </div>
                           </div>
                         </div>
-                      </li>
-                      <li><a href="#">Men's</a>
+                      </li>{% endcomment %}
+                        {% for cat in cat_menu %}
+                      <li><a href="#">{{ cat.title }}</a>
                         <div class="wrap-popup">
                           <div class="popup">
                             <div class="row">
-                              <div class="col-md-4 col-sm-6">
-                                <h3><a href="shop-grid-sidebar.html">Clothing</a></h3>
-                                <ul class="nav">
-                                  <li><a href="shop-grid-sidebar.html">T-Shirts</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Shirts</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Trousers</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Sleep Wear</a></li>
-                                </ul>
-                                <br>
-                                <h3><a href="shop-grid-sidebar.html">Shoes</a></h3>
-                                <ul class="nav">
-                                  <li><a href="shop-grid-sidebar.html">Flat Shoes</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Flat Sandals</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Boots</a></li>
-                                  <li><a href="shop-grid-sidebar.html">Heels</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-md-4 col-sm-6 has-sep">
+                              {% for subcat in cat.subcategory_set.all %}
+                                  <div class="col-md-4 col-sm-6">
+                                    <h3><a href="shop-grid-sidebar.html">{{ subcat.title }}</a></h3>
+                                    <ul class="nav">
+                                      <li><a href="shop-grid-sidebar.html">T-Shirts</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Shirts</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Trousers</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Sleep Wear</a></li>
+                                    </ul>
+                                    {% comment %}<br>
+                                    <h3><a href="shop-grid-sidebar.html">Shoes</a></h3>
+                                    <ul class="nav">
+                                      <li><a href="shop-grid-sidebar.html">Flat Shoes</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Flat Sandals</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Boots</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Heels</a></li>
+                                    </ul>{% endcomment %}
+                                  </div>
+                              {% endfor %}
+                              {% comment %}<div class="col-md-4 col-sm-6 has-sep">
                                 <h3><a href="shop-grid-sidebar.html">Jwellery</a></h3>
                                 <ul class="nav">
                                   <li><a href="shop-grid-sidebar.html">Bracelets</a></li>
@@ -103,7 +106,7 @@
                                   <li><a href="shop-grid-sidebar.html">Sonata</a></li>
                                   <li><a href="shop-grid-sidebar.html">Maxima</a></li>
                                 </ul>
-                              </div>
+                              </div>{% endcomment %}
                               <div class="col-md-4 has-sep hidden-sm">
                                 <div class="custom-menu-right">
                                   <div class="box-banner media">
@@ -116,7 +119,8 @@
                             <a href="#" class="ads"><img src="{% static 'fabulous/images/jtv-menu-banner4.jpg' %}" alt="Mega Sale" class="img-responsive"></a> </div>
                         </div>
                       </li>
-                      <li><a href="#">Women's</a>
+                        {% endfor %}
+                      {% comment %}<li><a href="#">Women's</a>
                         <div class="wrap-popup">
                           <div class="popup">
                             <div class="row">
@@ -182,8 +186,8 @@
                         </div>
                       </li>
                       <li class="nosub"><a href="shop-grid-sidebar.html">Kids</a></li>
-                      <li class="nosub"><a href="shop-grid-sidebar.html">Accessories</a></li>
-                      <li><a href="blog.html">Blog</a>
+                      <li class="nosub"><a href="shop-grid-sidebar.html">Accessories</a></li>{% endcomment %}
+                      {% comment %}<li><a href="blog.html">Blog</a>
                         <div class="wrap-popup column1">
                           <div class="popup">
                             <ul class="nav">
@@ -194,7 +198,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="nosub"><a href="contact.html">Contact Us</a></li>
+                      <li class="nosub"><a href="contact.html">Contact Us</a></li>{% endcomment %}
                     </ul>
                     <div class="side-banner"><img src="{% static 'fabulous/images/top-banner.jpg' %}" alt="Flash Sale" class="img-responsive"></div>
                   </div>
