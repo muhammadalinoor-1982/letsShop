@@ -75,10 +75,12 @@
                                   <div class="col-md-4 col-sm-6">
                                     <h3><a href="shop-grid-sidebar.html">{{ subcat.title }}</a></h3>
                                     <ul class="nav">
-                                      <li><a href="shop-grid-sidebar.html">T-Shirts</a></li>
-                                      <li><a href="shop-grid-sidebar.html">Shirts</a></li>
+                                        {% for supersubcat in subcat.super_subcategory_set.all %}
+                                      <li><a href="{% url 'SSCatProduct' supersubcat.id %}">{{ supersubcat.title }}</a></li>
+                                        {% endfor %}
+                                      {% comment %}<li><a href="shop-grid-sidebar.html">Shirts</a></li>
                                       <li><a href="shop-grid-sidebar.html">Trousers</a></li>
-                                      <li><a href="shop-grid-sidebar.html">Sleep Wear</a></li>
+                                      <li><a href="shop-grid-sidebar.html">Sleep Wear</a></li>{% endcomment %}
                                     </ul>
                                     {% comment %}<br>
                                     <h3><a href="shop-grid-sidebar.html">Shoes</a></h3>

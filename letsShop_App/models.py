@@ -54,6 +54,7 @@ class Product(models.Model):
     title               = models.CharField(max_length=50)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory         = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    super_subcategory   = models.ForeignKey(Super_SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     image               = models.ImageField(upload_to='product_image/')
     image1              = models.ImageField(upload_to='product_image/', null=True, blank=True)
     image2              = models.ImageField(upload_to='product_image/', null=True, blank=True)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Search</title>
+</head>
+<body>
+    <h1>Product Search</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="GET" action="">
+        {{ form.as_p }} {% comment %}Here 'as_p' means "Preview" {% endcomment %}
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for product in product %}
+        <li>{{ product.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
