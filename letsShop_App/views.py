@@ -6,10 +6,12 @@ from django.db.models import Q
 
 # Create your views here.
 def dashboard(request):
-    sliders = Slider.objects.all()
+    sliders  = Slider.objects.all()
     products = Product.objects.all()
     featured = products.filter(featured_product=True)
     trending = products.filter(trending_product=True)
+    deal     = products.filter(deals_of_the_day=True)
+    top_sell = products.filter(top_seller=True)
     return render(request, 'dashboard.html', locals())
 
 def SSCatProduct(request, id):
@@ -50,7 +52,22 @@ def search(request):
         messages.error(request, 'Product Not Available')
     return render(request, 'search/product/product_search.html', locals())
 
-
+def add_to_cart(request, id):
+    product_cart = Product.objects.get(super_subcategory=id)
+    cart = Cart.objects.filter(user=request.user)
+    if product_cart in cart:
+        cart.quantity += 1
+        cart.save()
+        return redirect('dashboard')
+    else:
+        quantity_now = 1
+        cart = Cart(
+            user = request.user,
+            product = product_cart,
+            quantity = quantity_now
+        )
+        cart.save()
+        return redirect('dashboard')
 
 
 

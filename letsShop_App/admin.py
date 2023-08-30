@@ -7,5 +7,10 @@ admin.site.register(SubCategory)
 admin.site.register(Size)
 admin.site.register(Color)
 admin.site.register(Condition)
-admin.site.register(Product)
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('title', 'posted_by', 'created_at', 'updated_at')
+
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Super_SubCategory)
+admin.site.register(Cart)
