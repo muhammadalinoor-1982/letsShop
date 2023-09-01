@@ -6,6 +6,16 @@ from django.db.models import Q
 
 # Create your views here.
 def dashboard(request):
+    user     = request.user
+    if user:
+        cart = Cart.objects.filter(user=user)
+        cart_len = len(cart)
+        if cart:
+            total = 0
+            for i in cart:
+                total_amount = (i.quantity) * (i.product.current_price)
+                total = total + total_amount
+
     sliders  = Slider.objects.all()
     products = Product.objects.all()
     featured = products.filter(featured_product=True)
@@ -16,6 +26,15 @@ def dashboard(request):
 
 def SSCatProduct(request, id):
     super_cat = Super_SubCategory.objects.get(id=id)
+    user = request.user
+    if user:
+        cart = Cart.objects.filter(user=user)
+        cart_len = len(cart)
+        if cart:
+            total = 0
+            for i in cart:
+                total_amount = (i.quantity) * (i.product.current_price)
+                total = total + total_amount
     superCat_Product = Product.objects.filter(super_subcategory=id)
     return render(request, 'LetsShop/pages/cat_product/product.html', locals())
 
@@ -53,21 +72,37 @@ def search(request):
     return render(request, 'search/product/product_search.html', locals())
 
 def add_to_cart(request, id):
-    product_cart = Product.objects.get(super_subcategory=id)
-    cart = Cart.objects.filter(user=request.user)
-    if product_cart in cart:
-        cart.quantity += 1
-        cart.save()
-        return redirect('dashboard')
-    else:
-        quantity_now = 1
-        cart = Cart(
-            user = request.user,
-            product = product_cart,
-            quantity = quantity_now
-        )
-        cart.save()
-        return redirect('dashboard')
+    user = request.user
+    product_cart = Product.objects.get(id=id)
+    if user.is_authenticated:
+        try:
+            cart = Cart.objects.get(Q(user=user, product=product_cart))
+            cart.quantity += 1
+            cart.save()
+            return redirect('dashboard')
+        except Cart.DoesNotExist:
+            cart = Cart.objects.create(user=user, product=product_cart)
+            cart.save()
+            return redirect('dashboard')
+def remove_cart(request, id):
+    user = request.user
+    cart = Cart.objects.get(Q(user=user, id=id))
+    cart.delete()
+    return redirect('dashboard')
+
+def cart_page(request):
+    user = request.user
+    if user:
+        cart = Cart.objects.filter(user=user)
+        cart_len = len(cart)
+        if cart:
+            total = 0
+            shipping_charge = 75.00
+            for i in cart:
+                total_amount = (i.quantity) * (i.product.current_price)
+                total = total + total_amount
+                ship_total = total + 75
+    return render(request, 'LetsShop/pages/cart/cart_page.html', locals())
 
 
 
